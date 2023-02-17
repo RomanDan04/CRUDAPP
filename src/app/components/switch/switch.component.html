@@ -1,0 +1,7 @@
+<label class="switch me-2" [ngClass]="{'_disabled': isDisabled}">
+    <input #checkbox type="checkbox"
+        [(ngModel)]="checked" [disabled]="isDisabled"
+        (input)="onChange($any($event.target).checked)"
+    >
+    <span class="slider"></span>
+</label>

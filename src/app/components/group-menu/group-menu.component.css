@@ -1,0 +1,41 @@
+._menu{
+    position: relative;
+}
+._menu:hover > ._menu_content{
+    visibility: visible;
+}
+._menu_content{
+    visibility: hidden;
+    list-style: none;
+    background: #fff;
+
+    position: absolute;
+    z-index: 10;
+    left: 15px;
+    top: 15px;
+    padding: 15px!important;
+
+    min-width: 200px;
+    border-radius: 10px;
+}
+._menu_item, .group_title{
+    cursor: pointer;
+    line-height: 25px;
+    font-weight: normal;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+}
+._menu_item ng-icon{
+    --ng-icon__size: 15px !important;
+    margin-right: 5px;
+}
+._menu_item:hover{
+    background: #99c2ff;
+}
+._menu_title{
+    cursor: default;
+    line-height: 30px;
+    font-weight: bolder;
+    border-bottom: 1px solid #dbdbdb;
+}

@@ -1,0 +1,30 @@
+td{
+    height: 50px!important;
+}
+td, label{
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user{
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #127acf;
+    background: #e8eeff;
+}
+
+.scrollY{
+    height: calc(100vh - 350px)!important;
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    
+}
+
+ng-icon{
+    --ng-icon__size: 15px !important;
+}

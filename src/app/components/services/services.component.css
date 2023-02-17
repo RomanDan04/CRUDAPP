@@ -1,0 +1,13 @@
+mat-card{
+    width: 150px;
+}
+mat-card-title, mat-card-subtitle{
+    width: 110px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+ng-icon{
+    width: 35px;
+    height: 35px;
+}

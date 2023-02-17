@@ -1,0 +1,43 @@
+<div class="d-flex flex-wrap">
+    <ng-template ngFor let-function [ngForOf]="functions" let-i="index">
+        <mat-card *ngIf="i+1 < limit || (i+1 === limit && !nrrHidenServices)" class="d-flex flex-row shadow-none me-5">
+            <mat-card-header class="p-1 d-flex justify-content-center align-items-center me-1">
+                <ng-icon name="heroCreditCard"
+                    class="border border-2 rounded-circle servizio_ico"
+                    [ngClass]="{
+                        'border-primary text-primary': !inactive,
+                        'border-secondary text-secondary': inactive
+                    }"
+                ></ng-icon>
+            </mat-card-header>
+            <mat-card-content class="p-1">
+                <mat-card-title-group>
+                    <mat-card-title class="fs-6 h-50 fw-normal"> 
+                        {{ function.title }}
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        <span>{{ function.minValue }}€</span>
+                        <span> - </span>
+                        <span>{{ function.maxValue }}€</span>
+                    </mat-card-subtitle>
+                </mat-card-title-group>
+            </mat-card-content>
+        </mat-card>
+    </ng-template>
+    <mat-card *ngIf="nrrHidenServices" class="d-flex flex-row shadow-none me-5">
+        <mat-card-header class="p-1 d-flex justify-content-center align-items-center me-1">
+            <ng-icon name="heroCreditCard"
+                class="border border-2 rounded-circle servizio_ico"
+                [ngClass]="{
+                    'border-primary text-primary': !inactive,
+                    'border-secondary text-secondary': inactive
+                }"
+            ></ng-icon>
+        </mat-card-header>
+        <mat-card-content class="p-1 d-flex align-items-center">
+            <mat-card-title class="fs-6 fw-normal justify-content-center">
+                +{{nrrHidenServices}} servizi
+            </mat-card-title>
+        </mat-card-content>
+    </mat-card>
+</div>

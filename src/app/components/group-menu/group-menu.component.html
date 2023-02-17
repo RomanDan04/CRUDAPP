@@ -1,0 +1,16 @@
+<div class="_menu position-relative" (click)="$event.stopPropagation()">
+    <div class="_menu_header">
+        <ng-icon class="ms-2 text-primary " name="heroEllipsisHorizontal"></ng-icon>
+    </div>
+    <ul class="_menu_content p-3 shadow">
+        <li class="_menu_title">Altro</li>
+        <li class="_menu_item">
+            <ng-icon name="heroPencil"></ng-icon>
+            <div (click)="editGroup()">Modifica</div>
+        </li>
+        <li class="_menu_item">
+            <ng-icon name="heroTrash"></ng-icon>
+            <div (click)="deleteGroup()">Elimina</div>
+        </li>
+    </ul>
+</div>

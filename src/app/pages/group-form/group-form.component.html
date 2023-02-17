@@ -1,0 +1,148 @@
+<form [formGroup]="groupForm" (ngSubmit)="salva()">
+    <!--dettagli-->
+    <div class="p-3 rounded-4 shadow bg-white">
+        <h4 class="fw-bold">Dettagli gruppo di firma</h4>
+        <div class="row">
+            <div class="col d-flex">
+                <div class="col-6">
+                    <h5 class="m-1 text-muted">Nome gruppo</h5>
+                    <app-input type="text" formControlName="groupName" [required]="true"></app-input>
+                </div>
+                <div class="col-3 mx-2">
+                    <h5 class="m-1 text-muted">Soglia minima servizi</h5>
+                    <app-input type="number" formControlName="minValue" [required]="true" [min]="1">
+                        <div class="text-muted m-0 d-flex align-items-center">EUR</div>
+                    </app-input>
+                </div>
+                <div class="col-3">
+                    <h5 class="m-1 text-muted">Soglia massima servizi</h5>
+                    <app-input type="number" formControlName="maxValue" [required]="true" [min]="1">
+                        <div class="text-muted m-0 d-flex align-items-center">EUR</div>
+                    </app-input>
+                </div>
+            </div>
+            <div class="col d-flex align-items-end justify-content-end">
+                <app-users [users]="users.value | filter : 'checked' : true" [limit]="4"></app-users>
+            </div>
+        </div>
+    </div>
+    <!-- {{ groupForm.controls.groupName.value }} -->
+    
+    <div class="d-flex mt-2">
+        <!--abilita e servizi-->
+        <div class="p-3 border rounded-4 shadow bg-white w-50 me-1">
+            <h4 class="fw-bold mb-1">Abilita servizi per gruppo di firma</h4>
+            <h5 class="text-muted">Seleziona i servizi e imposta la relativa soglia</h5>
+            <div class="scrollY">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                            <th scope="col"><h5 class="text-muted m-0">Servizio</h5></th>
+                            <th scope="col"><h5 class="text-muted m-0">Soglia minima</h5></th>
+                            <th scope="col"><h5 class="text-muted m-0">Soglia massima</h5></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <ng-container formArrayName="functions">
+                            <ng-container *ngFor="let function of functions.controls; let idx = index">
+                                    <tr class="align-middle" [formGroupName]="idx">
+                                        <td class="col-6">
+                                            <label class="w-100">
+                                                <app-switch #checkbox formControlName="checked" class="pe-2"></app-switch>
+                                                <span [ngClass]="{'text-muted': !checkbox.checked}">{{ function.value.title }}</span>
+                                            </label>
+                                        </td>
+
+                                        <td class="col-3">
+                                            <ng-container *ngIf="!groupForm.disabled else templateMin">
+                                                <app-input type="number" formControlName="minValue" [readonly]="!checkbox.checked"
+                                                [warning]="checkbox.checked && (function.value.minValue != groupForm.controls.minValue.value)">
+                                                    <div class="form-label text-muted m-0 d-flex align-items-center">EUR</div>  
+                                                </app-input>
+                                            </ng-container>
+
+                                            <ng-template #templateMin>
+                                                <div class="p-1 d-flex justify-content-between ms-1" *ngIf="function.value.checked">
+                                                    <div class="d-flex align-items-center"
+                                                    [ngClass]="{'text-warning': checkbox.checked && (function.value.minValue != groupForm.controls.minValue.value)}">
+                                                        <ng-icon *ngIf="checkbox.checked && (function.value.minValue != groupForm.controls.minValue.value)"
+                                                        name="heroExclamationTriangle" class="me-1"></ng-icon>
+                                                        <div> {{ function.value.minValue }} </div>
+                                                    </div>
+                                                    <div class="text-muted m-0 d-flex align-items-center">EUR</div>
+                                                </div>
+                                            </ng-template>
+                                        </td>
+
+                                        <td class="col-3">
+                                            <ng-container *ngIf="!groupForm.disabled else templateMax">
+                                                <app-input type="number" formControlName="maxValue" [readonly]="!checkbox.checked"
+                                                [warning]="checkbox.checked && (function.value.maxValue != groupForm.controls.maxValue.value)">
+                                                    <div class="text-muted m-0 d-flex align-items-center">EUR</div>
+                                                </app-input>
+                                            </ng-container>
+
+                                            <ng-template #templateMax>
+                                                <div class="p-1 d-flex justify-content-between ms-1" *ngIf="function.value.checked">
+                                                    <div class="d-flex align-items-center"
+                                                    [ngClass]="{'text-warning': checkbox.checked && (function.value.maxValue != groupForm.controls.maxValue.value)}">
+                                                        <ng-icon *ngIf="checkbox.checked && (function.value.maxValue != groupForm.controls.maxValue.value)"
+                                                        name="heroExclamationTriangle" class="me-1"></ng-icon>
+                                                        <div> {{ function.value.maxValue }} </div>
+                                                    </div>
+                                                    <div class="text-muted m-0 d-flex align-items-center">EUR</div>
+                                                </div>
+                                            </ng-template>
+                                        </td>
+                                    </tr>
+                            </ng-container>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <!--utenti da aggiungere al gruppo-->
+        <div class="p-3 border rounded-4 shadow bg-white w-50 ms-1">
+            <h4 class="fw-bold mb-1">Seleziona i utenti da aggiungere al gruppo</h4>
+            <h5 class="text-muted">Sono disponibili solo gli utenti dispositivi</h5>
+            <div class="scrollY">
+                <div class="user_content w-50">
+                    <app-input placeholder="Filtra..." formControlName="filterUser"></app-input>
+                    <ul class="list-group mt-2" formArrayName="users">
+                        <ng-container *ngFor="let user of users.controls | filter: 'fullName': groupForm.value.filterUser; let idx = index">
+                            <li class="list-group-item border-0 d-flex" [formGroupName]="idx">
+                                <label class="d-flex w-100 align-items-center">
+                                    <input type="checkbox" name="user_input" id="user_input" formControlName="checked">
+                                    <div class="user rounded-circle d-flex justify-content-center align-items-center ms-3 text-uppercase">
+                                        {{ user.value.userInitials}}
+                                    </div>
+                                    <div class="ms-3 fw-normal" [ngClass]="{'text-muted': groupForm.disabled}">
+                                        {{ user.value.fullName }}
+                                    </div>
+                                </label>
+                            </li>
+                        </ng-container>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-end mt-2">
+        <button class="btn btn-link text-decoration-none"
+        [routerLink]="['/']">Indietro</button>
+
+        <button type="submit" *ngIf="!disabled"
+        class="btn btn-primary d-flex align-items-center ms-2">
+            <span class="me-1 fw-normal fs-6">Salva</span>
+        </button>
+
+        <button type="button" *ngIf="disabled" (click)="enable()"
+        class="btn btn-primary d-flex align-items-center ms-2">
+            <span class="me-1 fw-normal fs-6">Modifica</span>
+        </button>
+    </div>
+</form>
+<!-- {{ groupForm.controls.functions.value[0] | json}} -->

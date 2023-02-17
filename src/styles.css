@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
+*,*::before,*::after{box-sizing: border-box; font-size: 14px;}
+html, body { height: 100%; background:  #f8f8f8; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
+
+ng-icon{
+    display: flex!important;
+    justify-content: center!important;
+    align-items: center!important;
+    --ng-icon__size: 20px !important;
+}
+
+.scrollY{
+    scrollbar-color: #e0e0e0;
+    scrollbar-width: thin;
+    scrollbar-gutter: stable;
+}

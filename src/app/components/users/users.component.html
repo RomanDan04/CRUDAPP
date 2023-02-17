@@ -1,0 +1,17 @@
+<div class="d-flex align-items-center">
+    <ng-template ngFor let-user [ngForOf]="users" let-i="index">
+        <div
+            class="user rounded-circle d-flex justify-content-center align-items-center ms-1"
+            [ngClass]="{'usersActive': active}"
+            *ngIf="i+1 < limit || (i+1 == users.length && i+1 == limit)"
+        >
+            {{ user.userInitials | uppercase}}
+        </div>
+    </ng-template>
+    <div
+        class="user rounded-circle d-flex justify-content-center align-items-center ms-1"
+        *ngIf="users.length > limit"
+    >
+       +{{ users.length - limit + 1 }}
+    </div>
+</div>

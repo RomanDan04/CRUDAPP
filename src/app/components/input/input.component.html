@@ -1,0 +1,24 @@
+<label class="d-flex form-control"
+[ngClass]="{'_readonly': readonly, '_warning': warning}"
+[style.background-color]="bgColor? bgColor+'!important' : ''">
+    <ng-container *ngIf="contentFirst">
+        <ng-container *ngTemplateOutlet="template"></ng-container>
+    </ng-container>
+    <input class="w-100 h-100 border-0"
+        [required]="required"
+        [disabled]="isDisabled"
+        [placeholder]="placeholder"
+        [attr.min]="min" [attr.max]="max"
+        [type]="type" [readOnly]="readonly"
+        [ngClass]="{'text-muted': readonly}"
+        [pattern]="pattern" [(ngModel)]="value"
+        (input)="onChange($any($event.target).value)"
+    >
+    <ng-container *ngIf="!contentFirst">
+        <ng-container *ngTemplateOutlet="template"></ng-container>
+    </ng-container>
+    
+    <ng-template #template>
+        <ng-content></ng-content>
+    </ng-template>
+</label>

@@ -1,0 +1,16 @@
+.user{
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+    color: #646464;
+    background: #f7f7f7;
+}
+
+.usersActive{
+    width: 35px;
+    height: 35px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #127acf;
+    background: #e8eeff;
+}
