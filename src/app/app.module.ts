@@ -18,7 +18,6 @@ import { GroupMenuComponent } from './components/group-menu/group-menu.component
 import { GroupListComponent } from './pages/group-list/group-list.component';
 import { GroupFormComponent } from './pages/group-form/group-form.component';
 import { SortPipe } from './pipes/sort/sort.pipe';
-import { PlatformComponent } from './components/platform/platform.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +31,6 @@ import { PlatformComponent } from './components/platform/platform.component';
     InputComponent,
     FilterPipe,
     SortPipe,
-    PlatformComponent,
   ],
   imports: [
     BrowserModule,
