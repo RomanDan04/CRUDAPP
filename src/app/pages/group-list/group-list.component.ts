@@ -9,7 +9,6 @@ import { ShareService } from 'src/app/services/share.service';
   styleUrls: ['./group-list.component.css']
 })
 export class GroupListComponent {
-  public name = "Gruppi di firma"
   public filterBy: string
   public groupList: Igroup[]
   constructor(

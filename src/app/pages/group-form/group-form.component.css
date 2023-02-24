@@ -1,7 +1,7 @@
 td{
     height: 50px!important;
 }
-td, label{
+td > label{
     max-width: 250px;
     white-space: nowrap;
     overflow: hidden;
@@ -18,13 +18,63 @@ td, label{
 }
 
 .scrollY{
-    height: calc(100vh - 350px)!important;
-    overflow-y: auto;
-    overflow-x: hidden;
-
-    
+    height: calc(100vh - 400px)!important;
 }
 
 ng-icon{
     --ng-icon__size: 15px !important;
+}
+
+.form_group{
+    width: 100%;
+    flex-wrap: nowrap;
+}
+
+.form_group_item{
+    width: 50%;
+}
+
+@media (max-width: 576px){
+    .search_users{
+        width: 100%!important;
+    }
+    .fs-3{
+        font-size: 15px!important;
+        margin-bottom: 5px;
+    }
+    .dettagli_content{
+        flex-wrap: wrap;
+    }
+    .dettagli_content > div{
+        margin: 0!important;
+    }
+    .dettagli_content .w-50{
+        width: 100%!important;
+    }
+    h4{
+        margin-bottom: 0;
+    }
+
+    td > label{
+        max-width: 130px;
+    }
+}
+
+@media (max-width: 992px) {
+    .users{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+    .form_group{
+        flex-wrap: wrap!important;
+    }
+    .form_group_item{
+        width: 100%;
+        margin: 5px 0!important;
+    }
+    .scrollY{
+        height: auto!important;
+        max-height: 300px;
+    }
 }

@@ -1,7 +1,7 @@
-<h1>Gruppi di firma</h1>
+<h1 class="fs-3">Gruppi di firma</h1>
 
 <div class="input-group rounded-0 mb-3">
-    <app-input class="col-3" placeholder="Filtra..." [(ngModel)]="filterBy" [contentFirst]="true" bgColor="#fff">
+    <app-input class="w300" placeholder="Filtra..." [(ngModel)]="filterBy" [contentFirst]="true" bgColor="#fff">
         <ng-icon name="heroMagnifyingGlass" class="me-2"></ng-icon>
     </app-input>
 </div>
@@ -9,14 +9,18 @@
 <div class="group_list mt-1 scrollY px-1">
     <ng-template ngFor let-group [ngForOf]="groupList | filter: 'groupName': filterBy | sort">
         <mat-card class="rounded-4 user-select-none mb-3 shadow" (click)="editGroup(group.id)" [ngClass]="{'border border-warning': group.warning}">
-            <mat-card-header class="mb-2 d-flex justify-content-between align-items-center">
-                <mat-card-title class="d-flex align-items-center">
-                    <ng-icon class="me-2 text-warning" name="heroExclamationTriangle" [ngClass]="{'d-none': !group.warning}"></ng-icon>
-                    <h3 class="m-0 fw-bold fs-6">{{ group.groupName }}</h3>
-                    <app-group-menu [groupId]="group.id" (ngModelChange)="$event.stopPropagation()"></app-group-menu>
-                </mat-card-title>
-                <mat-card-subtitle style="padding-left: 27px;" [ngClass]="{'d-block': !group.warning}">{{ group.warning }}</mat-card-subtitle>
-                <app-users [users]="group.users"></app-users>
+            <mat-card-header class="mb-2">
+                <div class="d-flex justify-content-between w-100">
+                    <div>
+                        <mat-card-title class="d-flex align-items-center">
+                            <ng-icon class="me-2 text-warning" name="heroExclamationTriangle" [ngClass]="{'d-none': !group.warning}"></ng-icon>
+                            <h3 class="m-0 fw-bold fs-6">{{ group.groupName }}</h3>
+                            <app-group-menu [groupId]="group.id" (ngModelChange)="$event.stopPropagation()"></app-group-menu>
+                        </mat-card-title>
+                        <mat-card-subtitle style="padding-left: 27px;" [ngClass]="{'d-block': !group.warning}">{{ group.warning }}</mat-card-subtitle>
+                    </div>
+                    <app-users [users]="group.users"></app-users>
+                </div>
             </mat-card-header>
             <mat-card-content>
                 <app-services [functions]="group.functions" [inactive]="!!group.warning"></app-services>

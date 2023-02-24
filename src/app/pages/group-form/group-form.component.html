@@ -1,40 +1,42 @@
-<h1>
+<h1 class="fs-3">
     <a href="" class="fs-3 text-decoration-none">Gruppi di firma ></a>
     Gruppo di firma per desposizioni
 </h1>
 <form [formGroup]="groupForm" (ngSubmit)="salva()">
     <!--dettagli-->
-    <div class="p-3 rounded-4 shadow bg-white">
+    <div class="p-3 rounded-4 shadow bg-white position-relative">
         <h4 class="fw-bold">Dettagli gruppo di firma</h4>
-        <div class="row">
-            <div class="col d-flex">
-                <div class="col-6">
-                    <h5 class="m-1 text-muted">Nome gruppo</h5>
-                    <app-input type="text" formControlName="groupName" [required]="true"></app-input>
+        <div class="d-flex">
+            <div class="col-xl-6 col-lg-8 col-12 d-flex dettagli_content">
+                <div class="w-50 me-2 d-flex flex-wrap align-content-end">
+                    <h5 class="m-1 text-muted w-100">Nome gruppo</h5>
+                    <app-input class="w-100" type="text" formControlName="groupName" [required]="true"></app-input>
                 </div>
-                <div class="col-3 mx-2">
-                    <h5 class="m-1 text-muted">Soglia minima servizi</h5>
-                    <app-input type="number" formControlName="minValue" [required]="true" [min]="1">
-                        <div class="text-muted m-0 d-flex align-items-center">EUR</div>
-                    </app-input>
-                </div>
-                <div class="col-3">
-                    <h5 class="m-1 text-muted">Soglia massima servizi</h5>
-                    <app-input type="number" formControlName="maxValue" [required]="true" [min]="1">
-                        <div class="text-muted m-0 d-flex align-items-center">EUR</div>
-                    </app-input>
+                <div class="w-50 d-flex">
+                    <div class="w-50 me-1 d-flex flex-wrap align-content-end">
+                        <h5 class="m-1 text-muted w-100">Soglia minima servizi</h5>
+                        <app-input class="w-100" type="number" formControlName="minValue" [required]="true" [min]="1">
+                            <div class="text-muted m-0 d-flex align-items-center">EUR</div>
+                        </app-input>
+                    </div>
+                    <div class="w-50 ms-1 d-flex flex-wrap align-content-end">
+                        <h5 class="m-1 text-muted w-100">Soglia massima servizi</h5>
+                        <app-input class="w-100" type="number" formControlName="maxValue" [required]="true" [min]="1">
+                            <div class="text-muted m-0 d-flex align-items-center">EUR</div>
+                        </app-input>
+                    </div>
                 </div>
             </div>
-            <div class="col d-flex align-items-end justify-content-end">
+            <div class="col d-flex align-items-end justify-content-end ms-2 users">
                 <app-users [users]="users.value | filter : 'checked' : true" [limit]="4"></app-users>
             </div>
         </div>
     </div>
     <!-- {{ groupForm.controls.groupName.value }} -->
     
-    <div class="d-flex mt-2">
+    <div class="d-flex mt-2 form_group">
         <!--abilita e servizi-->
-        <div class="p-3 border rounded-4 shadow bg-white w-50 me-1">
+        <div class="p-3 border rounded-4 shadow bg-white ms-1 form_group_item">
             <h4 class="fw-bold mb-1">Abilita servizi per gruppo di firma</h4>
             <h5 class="text-muted">Seleziona i servizi e imposta la relativa soglia</h5>
             <div class="scrollY">
@@ -73,7 +75,7 @@
                                                         name="heroExclamationTriangle" class="me-1"></ng-icon>
                                                         <div> {{ function.value.minValue }} </div>
                                                     </div>
-                                                    <div class="text-muted m-0 d-flex align-items-center">EUR</div>
+                                                    <div class="text-muted ms-1 d-flex align-items-center">EUR</div>
                                                 </div>
                                             </ng-template>
                                         </td>
@@ -94,7 +96,7 @@
                                                         name="heroExclamationTriangle" class="me-1"></ng-icon>
                                                         <div> {{ function.value.maxValue }} </div>
                                                     </div>
-                                                    <div class="text-muted m-0 d-flex align-items-center">EUR</div>
+                                                    <div class="text-muted ms-1 d-flex align-items-center">EUR</div>
                                                 </div>
                                             </ng-template>
                                         </td>
@@ -106,30 +108,29 @@
             </div>
         </div>
 
-
         <!--utenti da aggiungere al gruppo-->
-        <div class="p-3 border rounded-4 shadow bg-white w-50 ms-1">
+        <div class="p-3 border rounded-4 shadow bg-white ms-1 form_group_item">
             <h4 class="fw-bold mb-1">Seleziona i utenti da aggiungere al gruppo</h4>
             <h5 class="text-muted">Sono disponibili solo gli utenti dispositivi</h5>
+            <div class="w-50 mb-1 search_users">
+                <app-input placeholder="Filtra..." formControlName="filterUser"></app-input>
+            </div>
             <div class="scrollY">
-                <div class="user_content w-50">
-                    <app-input placeholder="Filtra..." formControlName="filterUser"></app-input>
-                    <ul class="list-group mt-2" formArrayName="users">
-                        <ng-container *ngFor="let user of users.controls | filter: 'fullName': groupForm.value.filterUser; let idx = index">
-                            <li class="list-group-item border-0 d-flex" [formGroupName]="idx">
-                                <label class="d-flex w-100 align-items-center">
-                                    <input type="checkbox" name="user_input" id="user_input" formControlName="checked">
-                                    <div class="user rounded-circle d-flex justify-content-center align-items-center ms-3 text-uppercase">
-                                        {{ user.value.userInitials}}
-                                    </div>
-                                    <div class="ms-3 fw-normal" [ngClass]="{'text-muted': groupForm.disabled}">
-                                        {{ user.value.fullName }}
-                                    </div>
-                                </label>
-                            </li>
-                        </ng-container>
-                    </ul>
-                </div>
+                <ul class="list-group mt-2" formArrayName="users">
+                    <ng-container *ngFor="let user of users.controls | filter: 'fullName': groupForm.value.filterUser; let idx = index">
+                        <li class="list-group-item border-0 d-flex" [formGroupName]="idx">
+                            <label class="d-flex w-100 align-items-center">
+                                <input type="checkbox" name="user_input" id="user_input" formControlName="checked">
+                                <div class="user rounded-circle d-flex justify-content-center align-items-center ms-3 text-uppercase">
+                                    {{ user.value.userInitials}}
+                                </div>
+                                <div class="ms-3 fw-normal" [ngClass]="{'text-muted': groupForm.disabled}">
+                                    {{ user.value.fullName }}
+                                </div>
+                            </label>
+                        </li>
+                    </ng-container>
+                </ul>
             </div>
         </div>
     </div>
