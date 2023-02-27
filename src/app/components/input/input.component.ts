@@ -43,12 +43,12 @@ export class InputComponent implements ControlValueAccessor, OnInit{
     this.value = value
   }
   
-  onChange = (_value: string) => { _value }
+  onChange = (value: any) => {}
   registerOnChange(fn: any): void {
     this.onChange = fn
   }
   
-  onTouche: () => {}
+  onTouche = () => {}
   registerOnTouched(fn: any): void {
     this.onTouche = fn
   }
