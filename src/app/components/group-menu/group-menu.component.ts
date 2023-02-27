@@ -19,7 +19,7 @@ export class GroupMenuComponent {
     this.router.navigate(['/group-edit/', {id: this.groupId}])
   }
   deleteGroup(){
-    let result = confirm('Sei sicuro di voler rimuovere il gruppo?')
+    const result = confirm('Sei sicuro di voler rimuovere il gruppo?')
     if(result == true){
       this.share.deleteGroup(this.groupId)
       this.router.navigateByUrl('/group-list')

@@ -1,5 +1,5 @@
 import { Component, Attribute, forwardRef } from '@angular/core';
-import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 @Component({
   selector: 'app-switch',
@@ -16,15 +16,15 @@ import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/f
 export class SwitchComponent implements ControlValueAccessor {
   constructor(@Attribute('checked') public checked: boolean){ }
 
-  onChange: any = () => {};
-  onTouch: any = () => {};
+  onChange: any = () => {}
+  onTouch: any = () => {}
 
   registerOnChange(fn: any): void {
     this.onChange = fn
   }
 
   registerOnTouched(fn: any): void {
-    this.onTouch = fn;
+    this.onTouch = fn
   }
 
   writeValue(checked: boolean): void {

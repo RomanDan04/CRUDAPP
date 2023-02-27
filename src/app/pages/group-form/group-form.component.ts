@@ -22,7 +22,7 @@ export class GroupFormComponent implements OnInit{
     filterUser: this._fb.control(""),
     users: this._fb.array([]),
   })
-  public disabled: boolean = false
+  public disabled = false
   private index: number
 
   constructor(
@@ -34,7 +34,7 @@ export class GroupFormComponent implements OnInit{
 
   ngOnInit(){
     this.index = parseInt(this.route.snapshot.params['id']) | 0
-    let group = this.share.getGroup(this.index)
+    const group = this.share.getGroup(this.index)
     
     // redirect to add group if the group is not found
     if(!group || Array.isArray(group)){
@@ -53,10 +53,10 @@ export class GroupFormComponent implements OnInit{
     }
 
     // add users
-    let users = this.share.getUser()
+    const users = this.share.getUser()
     if(Array.isArray(users))
     users.forEach(user => {
-      let userForm = this._fb.group({
+      const userForm = this._fb.group({
         userId: this._fb.control(user.userId),
         userInitials: this._fb.control(user.userInitials),
         fullName: this._fb.control(user.fullName),
@@ -64,7 +64,7 @@ export class GroupFormComponent implements OnInit{
       })
 
       if(group && !Array.isArray(group)){
-        let groupUser = group.users.find(usr => usr.userId === user.userId)
+        const groupUser = group.users.find(usr => usr.userId === user.userId)
         if(groupUser) userForm.patchValue({
           userInitials: groupUser.userInitials,
           checked: true
@@ -74,10 +74,10 @@ export class GroupFormComponent implements OnInit{
     })
 
     // add services
-    let servizi = this.share.getService()
+    const servizi = this.share.getService()
     if(Array.isArray(servizi))
     servizi?.forEach(ser => {
-      let functionForm = this._fb.group({
+      const functionForm = this._fb.group({
         title: this._fb.control(ser.title),
         functionCode: this._fb.control(ser.functionCode),
         minValue: this._fb.control(0),
@@ -86,7 +86,7 @@ export class GroupFormComponent implements OnInit{
       })
 
       if(group && !Array.isArray(group)){
-        let groupFun = group.functions.find(fn => fn.functionCode === ser.functionCode)
+        const groupFun = group.functions.find(fn => fn.functionCode === ser.functionCode)
         if(groupFun) functionForm.patchValue({
           minValue: parseInt(String(groupFun.minValue)),
           maxValue: parseInt(String(groupFun.maxValue)),
@@ -119,9 +119,9 @@ export class GroupFormComponent implements OnInit{
   }
 
   salva(){
-    let errorMessage = 'In atessa che il gruppo di firma venga approvato dai master'
-    let formData = this.groupForm.value
-    let newGroup = <Igroup>{
+    const errorMessage = 'In atessa che il gruppo di firma venga approvato dai master'
+    const formData = this.groupForm.value
+    const newGroup = <Igroup>{
       id: formData.id,
       groupName: formData.groupName,
       minValue: String(formData.minValue),

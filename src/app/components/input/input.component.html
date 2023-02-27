@@ -9,7 +9,7 @@
         [disabled]="isDisabled"
         [placeholder]="placeholder"
         [attr.min]="min" [attr.max]="max"
-        [type]="type" [readOnly]="readonly"
+        type="text" [readOnly]="readonly"
         [ngClass]="{'text-muted': readonly}"
         [pattern]="pattern" [(ngModel)]="value"
         (input)="onChange($any($event.target).value)"

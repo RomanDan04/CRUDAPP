@@ -3,7 +3,7 @@
         <div
             class="user rounded-circle d-flex justify-content-center align-items-center ms-1"
             [ngClass]="{'usersActive': active}"
-            *ngIf="i+1 < limit || (i+1 == users.length && i+1 == limit)"
+            *ngIf="i+1 < limit || (i+1 === users.length && i+1 === limit)"
         >
             {{ user.userInitials | uppercase}}
         </div>

@@ -15,7 +15,7 @@ export class GroupListComponent {
     private share: ShareService,
     private router: Router,
   ){
-    let list = share.getGroup()
+    const list = share.getGroup()
     if(Array.isArray(list)) this.groupList = list
   }
 

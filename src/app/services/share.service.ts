@@ -24,7 +24,7 @@ import { Iuser } from '../models/user';
 
     public editGroup(newGroup: Igroup){
         if(newGroup.id){
-            let pos = groupList.findIndex(grp => grp.id == newGroup.id)
+            const pos = groupList.findIndex(grp => grp.id == newGroup.id)
             groupList.splice(pos, 1, newGroup)
             return true
         }else{
@@ -36,15 +36,15 @@ import { Iuser } from '../models/user';
 
     public deleteGroup(id: number): boolean{
         if(id){
-            let i = groupList.findIndex(grp => grp.id == id)
+            const i = groupList.findIndex(grp => grp.id == id)
             if(i >= 0) groupList.splice(i, 1)
             return true
         }else return false
     }
 
-    private genGroupId(id:number = 1): number{
+    private genGroupId(id = 1): number{
         if(groupList.length){
-            let pos = groupList.findIndex(grp => grp.id == id)
+            const pos = groupList.findIndex(grp => grp.id == id)
             if(pos != -1) id = this.genGroupId(id+1)
         }
         return id

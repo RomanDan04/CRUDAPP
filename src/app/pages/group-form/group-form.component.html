@@ -62,7 +62,7 @@
                                         <td class="col-3">
                                             <ng-container *ngIf="!groupForm.disabled else templateMin">
                                                 <app-input type="number" formControlName="minValue" [readonly]="!checkbox.checked"
-                                                [warning]="checkbox.checked && (function.value.minValue != groupForm.controls.minValue.value)">
+                                                [warning]="checkbox.checked && (function.value.minValue !== groupForm.controls.minValue.value)">
                                                     <div class="form-label text-muted m-0 d-flex align-items-center">EUR</div>  
                                                 </app-input>
                                             </ng-container>
@@ -70,8 +70,8 @@
                                             <ng-template #templateMin>
                                                 <div class="p-1 d-flex justify-content-between ms-1" *ngIf="function.value.checked">
                                                     <div class="d-flex align-items-center"
-                                                    [ngClass]="{'text-warning': checkbox.checked && (function.value.minValue != groupForm.controls.minValue.value)}">
-                                                        <ng-icon *ngIf="checkbox.checked && (function.value.minValue != groupForm.controls.minValue.value)"
+                                                    [ngClass]="{'text-warning': checkbox.checked && (function.value.minValue !== groupForm.controls.minValue.value)}">
+                                                        <ng-icon *ngIf="checkbox.checked && (function.value.minValue !== groupForm.controls.minValue.value)"
                                                         name="heroExclamationTriangle" class="me-1"></ng-icon>
                                                         <div> {{ function.value.minValue }} </div>
                                                     </div>
@@ -83,7 +83,7 @@
                                         <td class="col-3">
                                             <ng-container *ngIf="!groupForm.disabled else templateMax">
                                                 <app-input type="number" formControlName="maxValue" [readonly]="!checkbox.checked"
-                                                [warning]="checkbox.checked && (function.value.maxValue != groupForm.controls.maxValue.value)">
+                                                [warning]="checkbox.checked && (function.value.maxValue !== groupForm.controls.maxValue.value)">
                                                     <div class="text-muted m-0 d-flex align-items-center">EUR</div>
                                                 </app-input>
                                             </ng-container>
@@ -91,8 +91,8 @@
                                             <ng-template #templateMax>
                                                 <div class="p-1 d-flex justify-content-between ms-1" *ngIf="function.value.checked">
                                                     <div class="d-flex align-items-center"
-                                                    [ngClass]="{'text-warning': checkbox.checked && (function.value.maxValue != groupForm.controls.maxValue.value)}">
-                                                        <ng-icon *ngIf="checkbox.checked && (function.value.maxValue != groupForm.controls.maxValue.value)"
+                                                    [ngClass]="{'text-warning': checkbox.checked && (function.value.maxValue !== groupForm.controls.maxValue.value)}">
+                                                        <ng-icon *ngIf="checkbox.checked && (function.value.maxValue !== groupForm.controls.maxValue.value)"
                                                         name="heroExclamationTriangle" class="me-1"></ng-icon>
                                                         <div> {{ function.value.maxValue }} </div>
                                                     </div>

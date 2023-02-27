@@ -14,23 +14,23 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class InputComponent implements ControlValueAccessor, OnInit{
-  @Attribute('value') value: any = ""
-  @Input() type: string = "text"
+  @Attribute('value') value = ""
+  @Input() type = "text"
   @Input() min: number
   @Input() max: number
   @Input() pattern: string
-  @Input() bgColor: string = ""
-  @Input() warning: any = false
-  @Input() placeholder: string = ""
-  @Input() readonly: boolean = false
-  @Input() required: boolean = false
-  @Input() contentFirst: boolean = false
+  @Input() bgColor = ""
+  @Input() warning = false
+  @Input() placeholder = ""
+  @Input() readonly = false
+  @Input() required = false
+  @Input() contentFirst = false
 
   ngOnInit(){
     if(!this.pattern){
       switch(this.type){
         case 'number':
-          this.pattern = "\d+\.\d+|\d+"
+          this.pattern = "\\d+\\.\\d+|\\d+"
         break
         default:
           this.pattern = ".*"
@@ -39,17 +39,17 @@ export class InputComponent implements ControlValueAccessor, OnInit{
     }
   }
 
-  writeValue(value: any): void{
+  writeValue(value: string): void {
     this.value = value
   }
   
-  onChange = (value: any) => {}
-  registerOnChange(fn: any) {
+  onChange = (_value: string) => { _value }
+  registerOnChange(fn: any): void {
     this.onChange = fn
   }
   
   onTouche: () => {}
-  registerOnTouched(fn: any) {
+  registerOnTouched(fn: any): void {
     this.onTouche = fn
   }
 

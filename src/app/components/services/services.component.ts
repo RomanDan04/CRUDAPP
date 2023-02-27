@@ -7,9 +7,9 @@ import { Ifunction } from 'src/app/models/function';
   styleUrls: ['./services.component.css']
 })
 export class ServicesComponent implements OnInit {
-  @Input() limit: number = 5
+  @Input() limit = 5
+  @Input() inactive = false
   @Input() functions: Ifunction[]
-  @Input() inactive: boolean = false
 
   public nrrHidenServices: number
 
@@ -18,8 +18,8 @@ export class ServicesComponent implements OnInit {
   }
 
   @HostListener('window:resize', ['$event'])
-  getLimitByDimensions(event?: any){
-    let scrWidth = window.innerWidth
+  getLimitByDimensions(){
+    const scrWidth = window.innerWidth
     if(scrWidth > 1400) this.limit = 6 
     else if(scrWidth > 1200) this.limit = 5
     else if(scrWidth > 1000) this.limit = 4
